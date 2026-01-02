@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eydid / SeeSo Web (GitHub Pages) – Gaze Demo</title>
+  <style>
+    :root { color-scheme: dark; }
+    html, body { height: 100%; margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:#0b0b10; color:#e9e9f2; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 10; padding: 12px 14px; background: rgba(11,11,16,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .row > * { flex: 0 0 auto; }
+    input, select, button { background:#141420; color:#e9e9f2; border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:10px 12px; }
+    input { min-width: 360px; max-width: 60vw; }
+    button { cursor:pointer; }
+    button.primary { border-color: rgba(255,255,255,0.22); background:#1b1b2c; }
+    button.danger { background:#2a1418; }
+    #status { margin-top: 10px; font-size: 13px; opacity: 0.9; line-height: 1.35; }
+    #status code { opacity: 0.9; }
+    #stage { position: absolute; inset: 0; padding-top: 110px; }
+    #output { display:block; width: 100%; height: 100%; }
+    .hint { opacity: 0.75; font-size: 12px; }
+    .pill { display:inline-block; padding:2px 8px; border-radius:999px; background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); margin-right:6px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="row">
+      <label class="hint">Calibration</label>
+      <select id="calPoints">
+        <option value="1">1 point</option>
+        <option value="5" selected>5 points</option>
+      </select>
+      <button id="btnStart" class="primary">Start Tracking</button>
+      <button id="btnStop" class="danger">Stop</button>
+      <button id="btnCal" class="primary">Calibrate</button>
+      <button id="btnClear">Clear</button>
+    </div>
+    <div id="status">
+      <span class="pill" id="pillCoi">COI: …</span>
+      <span class="pill" id="pillSdk">SDK: …</span>
+      <span class="pill" id="pillTrack">Tracking: …</span>
+      <span class="pill" id="pillPerm">Camera: …</span>
+      <div class="hint">
+        Tip: GitHub Pages is HTTPS, so camera permission can be requested directly. If the browser blocks SharedArrayBuffer, this page registers a COI service worker.
+      </div>
+      <div class="hint">
+        Calibration returns to this page with <code>?calibrationData=...</code>. The demo applies it automatically and caches it per user.
+      </div>
+    </div>
+  </header>
+
+  <div id="stage">
+    <canvas id="output"></canvas>
+  </div>
+
+  <!-- Your app -->
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
