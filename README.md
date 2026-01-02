@@ -18,10 +18,3 @@ Calibration starts automatically when the page loads (no button click). It will 
 `?calibrationData=...`
 
 After calibration returns with `?calibrationData=...`, the demo applies it automatically and caches it in `localStorage`.
-
-## License key
-`index.html` defaults to:
-`dev_1ntzip9admm6g0upynw3gooycnecx0vl93hz8nox`
-
-Override by URL:
-`?licenseKey=YOUR_KEY`
