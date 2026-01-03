@@ -3,8 +3,7 @@ import { loadWebpackModule } from "./webpack-loader.js";
 
 const LICENSE_KEY = "dev_1ntzip9admm6g0upynw3gooycnecx0vl93hz8nox"; // Key is not shown in the UI.
 
-const els = {
-  calPoints: document.getElementById("calPoints"),
+const els = {  calPoints: document.getElementById("calPoints"),
   btnStart: document.getElementById("btnStart"),
   btnStop: document.getElementById("btnStop"),
   btnCal: document.getElementById("btnCal"),
@@ -16,9 +15,7 @@ const els = {
   canvas: document.getElementById("output"),
 };
 
-function setPill(el, text) {
-  el.textContent = text;
-}
+function setPill(el, text) { el.textContent = text; }
 
 function getOrCreateUserId() {
   const key = "eyedid_user_id";
@@ -83,10 +80,9 @@ function onGaze(gazeInfo) {
   const x = gazeInfo.x;
   const y = gazeInfo.y;
 
-  // NOTE: 붉은색 점(#ff3b30) → 녹색 점으로 변경
   ctx.beginPath();
   ctx.arc(x, y, 10, 0, Math.PI * 2, true);
-  ctx.fillStyle = "#34C759"; // green
+  ctx.fillStyle = "#ff3b30";
   ctx.fill();
 
   // small crosshair
@@ -202,18 +198,15 @@ function calibrate() {
   EasySeeso.openCalibrationPageQuickStart(licenseKey, userId, redirectUrl, points);
 }
 
-async function main() {
-  // UI init
+async function main() {  // UI init
 
   // Resize
   ctx = resizeCanvas();
-  window.addEventListener("resize", () => {
-    ctx = resizeCanvas();
-  });
+  window.addEventListener("resize", () => { ctx = resizeCanvas(); });
 
   // COI status + SW
   const swOk = await registerCOIServiceWorker();
-  setPill(els.pillCoi, `COI: ${crossOriginIsolated ? "on" : swOk ? "pending reload" : "off"}`);
+  setPill(els.pillCoi, `COI: ${crossOriginIsolated ? "on" : (swOk ? "pending reload" : "off")}`);
 
   // Load SDK sources
   await loadSDK();
@@ -230,9 +223,7 @@ async function main() {
   // Auto-calibrate immediately on first load (no button click), then auto-start tracking when calibration returns.
   // If the URL already contains ?calibrationData=..., we skip calibration and start tracking.
   const hasCalibrationData = !!parseCalibrationDataFromUrl();
-  setTimeout(() => {
-    hasCalibrationData ? startTracking() : calibrate();
-  }, 300);
+  setTimeout(() => { hasCalibrationData ? startTracking() : calibrate(); }, 300);
 }
 
 main().catch((e) => {
