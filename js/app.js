@@ -81,7 +81,7 @@ function onGaze(gazeInfo) {
   const y = gazeInfo.y;
 
   ctx.beginPath();
-  ctx.arc(x, y, 10, 0, Math.PI * 2, true);
+  ctx.arc(x, y, 50, 0, Math.PI * 2, true);
   ctx.fillStyle = "#34C759"; // green
   ctx.fill();
 
