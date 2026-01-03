@@ -82,7 +82,7 @@ function onGaze(gazeInfo) {
 
   ctx.beginPath();
   ctx.arc(x, y, 10, 0, Math.PI * 2, true);
-  ctx.fillStyle = "#ff3b30";
+  ctx.fillStyle = "#34C759"; // green
   ctx.fill();
 
   // small crosshair
